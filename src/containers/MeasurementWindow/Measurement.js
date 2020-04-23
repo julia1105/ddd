@@ -13,13 +13,11 @@ const Measurement = ({measure, ...props}) => {
         </div>
       );
 
-      const value = measure.startDate;
-
     return (
         <div className = {classes.measure}>
-            <Col sm={4}>{new Date(value).toLocaleDateString()}</Col>
-            <Col sm={4}>{measure.text}</Col>
-            <Col sm={3} >{measure.mark}</Col>
+            <Col sm={4}>{measure.data}</Col>
+            <Col sm={4}>{measure.measure}</Col>
+            <Col sm={3} >{measure.value}</Col>
             <Col><ActionBtn /></Col>
         </div>
     )

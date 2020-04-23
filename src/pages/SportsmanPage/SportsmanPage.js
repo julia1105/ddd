@@ -3,9 +3,11 @@ import GroupList from '../../containers/GroupList'
 import AthletesList from '../../containers/AthletesList'
 import TrPage from '../TrPage/TrPage'
 import { Tabs, Tab } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
 import axios from 'axios'
 
-import MeasurementWindow from '../../containers/MeasurementWindow/MeasurementWindow';
+import Measurement from '../../containers/MeasurementWindow/Measurement'
+import AddMeasurement from '../../containers/MeasurementWindow/AddMeasurement'
 import EventsWindow from '../../containers/Events/EventsWindow'
 import TestsWindow from '../../containers/Tests/TestsWindow'
 
@@ -23,6 +25,65 @@ class SportsmanPage extends Component {
          measures: []
          };
       }
+
+      addMeasure = (startData, measure, value) => {
+        this.setState(state=> {
+            let {measures} = state;
+
+            const v = startData;
+            const date = new Date(v).toLocaleDateString()
+
+            const measur = {
+                data: date,
+                measure: measure,
+                value: value,
+              };
+
+              alert(measur.data + measur.measure + measur.value)
+
+              if (this.props.match && this.props.match.params.id) {
+            const id = this.props.match.params.id
+            alert(id)
+              axios.post(`/api/newParameter/${id}`, 
+              { data: '123',
+                measure: measure,
+                value: 12
+            })
+                    .then(res => {
+                    console.log(res);
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                  });
+                }
+
+            measures.push({
+                id: measures.length !== 0 ? measures.length : 0,
+                data: date,
+                measure: measure,
+                value: value
+            });
+            return measures;
+        });
+    };
+    
+      deleteMeasure = id => {
+        const index = this.state.measures.map(measure => measure.id).indexOf(id);
+
+        axios.delete(`/api/delParameter/${id}`)
+        .then(res => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+
+        this.setState( state => {
+            let {measures} = state;
+            delete measures[index];
+            return measures;
+        })
+    }
      
       componentDidMount() {
         if (this.props.match && this.props.match.params.id) {
@@ -37,12 +98,26 @@ class SportsmanPage extends Component {
               .catch(function (error) {
                 console.log(error.response);
               });
-            }    
+
+              axios.get(`/api/listPartParameter/${id}`)
+              .then(res => {
+                console.log(res);
+                this.setState({
+                    measures: res.data
+                });
+              })
+              .catch(function (error) {
+                console.log(error.response);
+              });
+            }  
+            
+            
         }
 
 render(){
-    
+    const { measures } = this.state;
     const { athlete } = this.state;
+
     return (
         <div>
             <div className={classes.main_tab}>
@@ -69,7 +144,35 @@ render(){
                         </div>
                     </div>
                         <EventsWindow />
-                        <MeasurementWindow />
+
+                        <div>
+                <div className={classes.measurement}>
+                <div className={classes.nav_line}>
+                        История измерений 
+                        <AddMeasurement addMeasure = {this.addMeasure}>
+                            </AddMeasurement>
+                       
+                    </div>
+                    <Container>
+                        <Row>
+                        <Col sm={4} className={classes.table_header}>ДАТА ИЗМЕРЕНИЯ</Col>
+                        <Col sm={4} className={classes.table_header}>ИЗМЕРЕНИЕ</Col>
+                        <Col sm={3} className={classes.table_header}>ПОКАЗАТЕЛЬ</Col>
+                        </Row>
+                        <hr className={classes.table_hr}/>
+                        <div className={classes.table_scroll}>
+                        {measures.map(measure =>(
+                        <Measurement 
+                            deleteMeasure = {() => this.deleteMeasure(measure.param_id)}
+                            measure = {measure} key={measure.id}>
+                        </Measurement>
+                        ))
+                    }
+                    </div>
+                    </Container> 
+                </div>
+            </div>
+                       
                         <TestsWindow />
                     </div>
                 </Tab>
