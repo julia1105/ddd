@@ -1,0 +1,57 @@
+.inf_sp {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #E7E9EC;
+    position: fixed;
+    background:  rgb(182, 184, 187);
+    border-radius: 10px;
+    margin-left: 17.5%;
+   
+}
+.profile_info {
+    position: relative;
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    margin: 20px 20px;
+    width: calc(100% - 1200px);
+    height: 250px;
+    float: left;
+}
+    
+.info{
+    width: calc(100% - 125px);
+    margin-left: 30px;
+    padding: 20px 20px 10px 20px;
+}
+
+.edit_icon {
+    opacity: 0;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.left:hover .edit_icon{
+    opacity: 0.6;
+}
+
+  .img{
+    width: 80px;
+    height: 80px;
+    
+  }
+
+  .img img{
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 20px 30px 20px 20px;  
+  }
+
+  .right {
+    position: absolute; 
+    top: 20px;
+    left: 350px;
+  }
+
+  

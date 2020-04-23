@@ -1,0 +1,196 @@
+.AddButton {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    color: #000;
+    margin-right: 15px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.add_group_form {
+    width: 235px;
+    height: 100px;
+    background: #ffffff;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.rodal{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.form {
+  position:relative;
+  height: 60px;
+}
+
+.form input {
+  width: 100%;
+  height: 100%; 
+  color: black;
+  padding-top: 20px;
+  border: none;
+  border-bottom: 1px solid #595f6e;
+  margin-bottom: 30px;
+}
+
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: -42%;
+  width: 100%;
+  height: 75%;
+  pointer-events: none;
+  color: #595f6e;
+}
+
+.form :focus {
+  border-bottom: 2px solid #595f6e;
+}
+
+.form :focus .label{
+  color: black;
+}
+
+.select {
+  margin-top: 20px;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid rgb(56, 56, 56);
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 150px;
+}
+
+.button:hover {
+  background: rgb(180, 180, 180);
+}
+
+.button:focus {
+  outline: none;
+}
+
+  .button1 {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid rgb(56, 56, 56);
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 200px;
+}
+
+.button1:hover {
+    background: rgb(180, 180, 180);
+}
+
+.button1:focus {
+    outline: none;
+}
+
+
+.dropBox{
+    margin: 20px;
+  }
+  
+    .select_box {
+      display: flex;
+      width: 300px;
+      flex-direction: column;
+    }
+    
+    .select_box .options_container {
+      background: #2f3640;
+      color: #f5f6fa;
+      max-height: 0;
+      width: 100%;
+      opacity: 0;
+      transition: all 0.4s;
+      border-radius: 8px;
+      overflow: hidden;
+    
+      order: 1;
+    }
+    
+    .selected {
+      background: #2f3640;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      color: #f5f6fa;
+      position: relative;
+    
+      order: 0;
+    }
+    
+    .selected::after {
+      content: "";
+     
+      background-size: contain;
+      background-repeat: no-repeat;
+    
+      position: absolute;
+      height: 100%;
+      width: 32px;
+      right: 10px;
+      top: 5px;
+    
+      transition: all 0.4s;
+    }
+    
+    .select_box .options_container.active {
+      max-height: 240px;
+      opacity: 1;
+      overflow-y: scroll;
+    }
+    
+    .select_box .options_container.active + .selected::after {
+      transform: rotateX(180deg);
+      top: -6px;
+    }
+    
+    .select_box .options_container::-webkit-scrollbar {
+      width: 8px;
+      background: #0d141f;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .select_box .options_container::-webkit-scrollbar-thumb {
+      background: #525861;
+      border-radius: 0 8px 8px 0;
+    }
+    
+    .select_box .option,
+    .selected {
+      padding: 12px 24px;
+      cursor: pointer;
+    }
+    
+    .select_box .option:hover {
+      background: #414b57;
+    }
+    
+    .select_box label {
+      cursor: pointer;
+    }
+    
+    .select_box .option .radio {
+      display: none;
+    }

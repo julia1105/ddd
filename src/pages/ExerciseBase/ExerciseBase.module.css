@@ -1,0 +1,27 @@
+.header {
+    background-color: #cacaca;
+    height: 90px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.add_tr {
+    text-align: center;
+    margin: 40px; 
+}
+
+.exersice_card1 {
+    height: 300px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.filters {
+    background-color: #cacaca;
+    height: 100%;
+}
+
+.col_filters {
+    padding-right: 0%;
+    padding-left: 0%;
+}

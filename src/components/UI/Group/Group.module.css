@@ -1,0 +1,39 @@
+.group {
+    display: flex;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    justify-content: space-between;
+  }
+  
+  .group:hover {
+    background-color: #04395e3d;
+  }
+  
+  .group p {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text);
+  }
+  .action_btn {
+    opacity: 0;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .action_btn:hover {
+    opacity: 1;
+  }
+
+  .group:hover .action_btn{
+    opacity: 0.8;
+  }
+
+  .delete_icon{
+    opacity: 0.8;
+  }
+
+  
+
+
+  

@@ -1,0 +1,17 @@
+{
+    "groups": [
+        {"id":1, "name": "Женщины кандидаты"},
+        {"id":2, "name": "Женщины мастера"},
+        {"id":3, "name": "Мужчины кандидаты"},
+        {"id":4, "name": "Мужчины мастера"},
+        {"id":5, "name": "Юниоры"}
+    ],
+    "sportsmen": [
+        {"id":1, "groupId":3, "name":"Иван Иванов", "email": "ivan@mail.ru"},
+        {"id":2, "groupId":2, "name":"Мария Лисина", "email": "maria@gmail.com"},
+        {"id":3, "groupId":1, "name":"Елена Петрова", "email": "elena@mail.ru"},
+        {"id":4, "groupId":3, "name":"Марк Маркович", "email": "mark@yandex.ru"},
+        {"id":5, "groupId":5, "name":"Роман Романов", "email": "roman@mail.ru"}
+    ]
+
+}
