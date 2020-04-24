@@ -1,8 +1,14 @@
 import React, {Component} from 'react'
 import classes from './Test.module.css'
 import Rodal from 'rodal';
+import DatePicker from "react-datepicker";
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import ru from 'date-fns/locale/ru';
 
+import "react-datepicker/dist/react-datepicker.css";
 import 'rodal/lib/rodal.css';
+
+registerLocale('ru', ru)
 
 const divStyle = {
   backgroundColor: '#ffffff',
@@ -17,35 +23,41 @@ class AddTest extends Component{
         super(props);
         this.state = { 
           visible: false,
-          date: '',
+          startDate: new Date(),
           text: '',
           mark: ''};
           this.inputChange = this.inputChange.bind(this);
       }
     
      onClose = () => {
-        this.setState({date: ''});
+        this.setState({startDate: new Date()});
         this.setState({text: ''});
         this.setState({mark: ''});
       }
 
       addTest = () => {
-        const {date} = this.state;
+        const {startDate} = this.state;
         const {text} = this.state;
         const {mark} = this.state;
 
-        if (!date  & !text & !mark) {
+        if (!startDate  & !text & !mark) {
           alert('Заполните все поля!');
           return;
         }
         
-          this.props.addTest(date, text, mark);
-          this.setState({date: ''});
+          this.props.addTest(startDate, text, mark);
+          this.setState({startDate: new Date()});
           this.setState({text: ''});
           this.setState({mark: ''})
           this.setState({ visible: false })
         
       };
+
+      handleChange = date => {
+        this.setState({
+          startDate: date
+        })
+      }
 
       show() {
         this.setState({ visible: true });
@@ -76,8 +88,10 @@ class AddTest extends Component{
          
          <div className={classes.datepicker}>
          <label>Дата: 
-           <input name="date" type="text"
-           value={this.state.date} className={classes.input} onChange={this.inputChange} ></input>
+         <DatePicker locale="ru" selected={this.state.startDate}
+                      onChange={this.handleChange}
+                      dateFormat='dd/MM/yyyy'
+                  />
          </label>
          </div>
 

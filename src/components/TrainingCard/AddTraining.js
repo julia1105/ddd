@@ -98,12 +98,12 @@ class AddTraining extends Component{
                              </label>
                             </div>
 
-                            <div className={classes.form}>
+                            <div className={classes.select}>
                             <label>Сложность: 
-                                  <select className={classes.input} name="complexity" value={this.state.complexity} onChange={this.inputChange}>
-                                  <option value="Легкая">Легкая</option>
-                                  <option value="Средняя">Средняя</option>
-                                  <option value="Тяжелая">Тяжелая</option>
+                                  <select className={classes.select_box} name="complexity" value={this.state.complexity} onChange={this.inputChange}>
+                                  <option className={classes.options_container} value="Легкая">Легкая</option>
+                                  <option className={classes.options_container} value="Средняя">Средняя</option>
+                                  <option className={classes.options_container} value="Тяжелая">Тяжелая</option>
                             </select>
                             </label>
                             </div>

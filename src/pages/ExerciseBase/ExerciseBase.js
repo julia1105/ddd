@@ -6,13 +6,17 @@ import ExerciseCard from '../../components/ExerciseCard/ExerciseCard'
 
 import classes from './ExerciseBase.module.css'
 import AddExercise from '../../components/ExerciseCard/AddExercise';
+import ChckBox from './CheckBox';
 
 class ExerciseBase extends Component {
     constructor(props) {
         super(props);
         this.state = { 
           visible: false,
-          exercises: []
+          exercises: [],
+          Filters: { 
+              types: []
+          }
          };
       }
 
@@ -55,6 +59,19 @@ class ExerciseBase extends Component {
         
         const { exercises } = this.state;
 
+        
+
+        const handleFilters = (filters, category) => {
+
+                console.log(filters)
+            //const newFilters = {...Filters}
+
+            //newFilters[category] = filters
+
+            //showFilteredResults(newFilters)
+           // setFilters(newFilters)
+        }
+
         return (
             <div >
             <Container fluid>
@@ -77,7 +94,9 @@ class ExerciseBase extends Component {
                     </Col>
                     <Col sm={4} className="p-0">
                         <div className={classes.filters}>
-
+                            <ChckBox 
+                                handleFilters={filters => handleFilters(filters, "types")}
+                            />
                         </div>
                     </Col>
                 </Row>

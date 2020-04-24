@@ -41,7 +41,7 @@ class CreateTraining extends Component {
             <Container fluid>
                 <Row className={classes.header}>
                     <Col>
-                        <h1>База тренировок</h1>                        
+                        <h1>База тренировок</h1>                       
                     </Col>
                 </Row>
                 <Row className={classes.add_tr}>

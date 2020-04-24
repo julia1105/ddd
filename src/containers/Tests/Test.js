@@ -17,9 +17,9 @@ const Test = ({test, ...props}) => {
     return (
         <div className = {classes.test}>
             
-            <Col sm={4}>{test.date}</Col>
-            <Col sm={4}>{test.text}</Col>
-            <Col sm={3}>{test.mark}</Col>
+            <Col sm={4}>{test.data}</Col>
+            <Col sm={4}>{test.test}</Col>
+            <Col sm={3}>{test.value}</Col>
             <Col><ActionBtn /></Col>   
         </div>
     )

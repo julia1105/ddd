@@ -2,17 +2,20 @@ import React, {Component} from 'react'
 import GroupList from '../../containers/GroupList'
 import AthletesList from '../../containers/AthletesList'
 import TrPage from '../TrPage/TrPage'
-import { Tabs, Tab } from 'react-bootstrap';
-import { Container, Row, Col} from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap'
+import { Container, Row, Col} from 'react-bootstrap'
 import axios from 'axios'
+import {Line} from 'react-chartjs-2'
 
 import Measurement from '../../containers/MeasurementWindow/Measurement'
 import AddMeasurement from '../../containers/MeasurementWindow/AddMeasurement'
 import EventsWindow from '../../containers/Events/EventsWindow'
-import TestsWindow from '../../containers/Tests/TestsWindow'
+import Test from '../../containers/Tests/Test'
+import AddTest from '../../containers/Tests/AddTest'
 
 import classes from './SportsmanPage.module.css'
-import InfoAthletes from '../../containers/InfoAthletes';
+
+
 
 
 class SportsmanPage extends Component {
@@ -22,9 +25,69 @@ class SportsmanPage extends Component {
         this.state = { 
             isOpen: false,
             athlete: [],
-         measures: []
+         measures: [],
+         tests: []
          };
       }
+
+      addTest = (startData, test, value) => {
+
+        const v = startData;
+        const date = new Date(v).toLocaleDateString()
+        
+        const testt = {
+            data: date,
+            test: test,
+            value: value,
+          };
+
+          alert(testt.data + testt.measure + testt.value)
+
+              if (this.props.match && this.props.match.params.id) {
+            const id = this.props.match.params.id
+            alert(id)
+              axios.post(`/api/newStandart/${id}`, 
+              { data: date,
+                test: test,
+                value: value
+            })
+                    .then(res => {
+                    console.log(res);
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                  });
+                }
+
+        this.setState(state=> {
+            let {tests} = state;
+            tests.push({
+                id: tests.length !== 0 ? tests.length : 0,
+                data: date,
+                test: test,
+                value: value
+            });
+            return tests;
+        });
+    };
+    
+      deleteTest = id => {
+        const index = this.state.tests.map(test => test.id).indexOf(id);
+
+        axios.delete(`/api/delStandart/${id}`)
+        .then(res => {
+            console.log(res);
+        })
+        .catch(function (error) {
+            console.log(error.response);
+        });
+
+        this.setState( state => {
+            let {tests} = state;
+            delete tests[index];
+            return tests;
+        })
+    }
 
       addMeasure = (startData, measure, value) => {
         this.setState(state=> {
@@ -45,9 +108,9 @@ class SportsmanPage extends Component {
             const id = this.props.match.params.id
             alert(id)
               axios.post(`/api/newParameter/${id}`, 
-              { data: '123',
+              { data: date,
                 measure: measure,
-                value: 12
+                value: value
             })
                     .then(res => {
                     console.log(res);
@@ -109,14 +172,24 @@ class SportsmanPage extends Component {
               .catch(function (error) {
                 console.log(error.response);
               });
-            }  
-            
-            
+
+              axios.get(`/api/listPartStandart/${id}`)
+              .then(res => {
+                console.log(res);
+                this.setState({
+                    tests: res.data
+                });
+              })
+              .catch(function (error) {
+                console.log(error.response);
+              });
+            }     
         }
 
 render(){
     const { measures } = this.state;
     const { athlete } = this.state;
+    const { tests } = this.state;
 
     return (
         <div>
@@ -173,7 +246,38 @@ render(){
                 </div>
             </div>
                        
-                        <TestsWindow />
+            <div>
+                <div className={classes.test_main}>
+                <div className={classes.nav_line}>
+                        История тестов
+                        <AddTest addTest = {this.addTest}>
+                            </AddTest>
+                       
+                    </div>
+                    <Container>
+                        <Row>
+                        <Col sm={4} className={classes.table_header}>ДАТА ИЗМЕРЕНИЯ</Col>
+                        <Col sm={4} className={classes.table_header}>ТЕСТ</Col>
+                        <Col sm={3} className={classes.table_header}>ПОКАЗАТЕЛЬ</Col>
+                        </Row>
+                        <hr className={classes.table_hr}/>
+                       
+                        <div className={classes.table_scroll}>
+                        {tests.map(test =>(
+                        <Test 
+                            deleteTest = {() => this.deleteTest(test.standart_id)}
+                            test = {test} key={test.id}>
+                        </Test>
+                        ))
+                    }
+                    </div>
+                  
+                    </Container>
+                   
+                </div>
+            </div>
+
+
                     </div>
                 </Tab>
                 <Tab className={classes.calendar} eventKey="calendar" title="Календарь тренировок">

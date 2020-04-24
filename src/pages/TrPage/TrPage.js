@@ -24,7 +24,8 @@ class TrPage extends Component {
     locale(navigator.language);
     this.state = {
       scheduler: null,
-      locale: 'ru'
+      locale: 'ru',
+      records: []
     };
     
     loadMessages({

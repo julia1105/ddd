@@ -279,3 +279,30 @@
   text-align: center;
   margin-bottom: 50px;
 }
+.test_main {
+  background: #fff;
+  border-radius: 10px;
+  height: 300px;
+  width: calc(100% - 1150px);
+  margin-left: 760px;
+  margin-top: -320px;
+}
+
+.test {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  justify-content: space-between;
+}
+
+.test:hover {
+  background-color: #04395e3d;
+}
+
+.test p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text);
+}
