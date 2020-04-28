@@ -2,8 +2,14 @@ import React, { Component} from 'react'
 import classes from './AddAthlete.module.css'
 import Rodal from 'rodal';
 import axios from 'axios'
+import DatePicker from "react-datepicker";
+import { registerLocale } from  "react-datepicker";
+import ru from 'date-fns/locale/ru';
 
+import "react-datepicker/dist/react-datepicker.css";
 import 'rodal/lib/rodal.css';
+
+registerLocale('ru', ru)
 
 const divStyle = {
   backgroundColor: '#ffffff',
@@ -21,6 +27,9 @@ class AddAthlete extends Component{
       name: '',
       surname: '',
       sex: 'мужчина',
+      age: new Date(),
+      weigth: null,
+      heigth: null,
       email: '',
       group_id: 2,
       groups: []
@@ -39,7 +48,10 @@ class AddAthlete extends Component{
     this.setState({name: ''});
     this.setState({surname: ''});
     this.setState({sex: 'мужчина'});
+    this.setState({age: new Date()});
+    this.setState({weigth: null});
     this.setState({email: ''});
+    this.setState({heigth: null});
     this.setState({group_id: 2});
   }
 
@@ -47,6 +59,9 @@ class AddAthlete extends Component{
     const {name} = this.state;
     const {surname} = this.state;
     const {sex} = this.state;
+    const {age} = this.state;
+    const {weigth} = this.state;
+    const {heigth} = this.state;
     const {email} = this.state;
     const {group_id} = this.state;
 
@@ -55,16 +70,22 @@ class AddAthlete extends Component{
       return;
     }
     
-      this.props.addAthlete(name, surname, sex, email, group_id);
-      alert(this.state.name + this.state.surname + this.state.email + this.state.sex + this.state.group_id)
-      this.setState({name: ''});
+      this.props.addAthlete(name, surname, sex, age, weigth, heigth,  email, group_id);
       this.setState({surname: ''});
       this.setState({sex: 'мужчина'});
+      this.setState({age: new Date()});
       this.setState({email: ''});
+      this.setState({weigth: null});
+      this.setState({heigth: null});
       this.setState({group_id: 2});
-      this.setState({ visible: false })
-
+      this.setState({ visible: false });
   };
+
+  handleChange = date => {
+    this.setState({
+      age: date
+    })
+  }
 
   inputChange = (event) => {
     const name = event.target.name;
@@ -88,7 +109,7 @@ class AddAthlete extends Component{
                     onClick={this.show.bind(this)}
                 >Добавить спортсмена</button>
                 
-                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={500} className={classes.rodall} customStyles={divStyle}>
+                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={660} className={classes.rodall} customStyles={divStyle}>
                 
                 <div className={classes.form}>
                 <input type="text" name="name" onChange={this.inputChange} value={this.state.name} required />
@@ -110,6 +131,29 @@ class AddAthlete extends Component{
                   <span className={classes.content_name}>Email</span>
                 </label>
                 </div>
+
+                <div className={classes.form}>
+                <input type="text" name="heigth" onChange={this.inputChange} value={this.state.heigth} required />
+                <label for="heigth" className={classes.label_name}>
+                  <span className={classes.content_name}>Рост</span>
+                </label>
+                </div>
+
+                <div className={classes.form}>
+                <input type="text" name="weigth" onChange={this.inputChange} value={this.state.weigth} required />
+                <label for="weigth" className={classes.label_name}>
+                  <span className={classes.content_name}>Вес</span>
+                </label>
+                </div>
+
+                <div className={classes.datepicker}>
+                <label>Дата рождения: 
+                <DatePicker locale="ru" selected={this.state.age}
+                      onChange={this.handleChange}
+                      dateFormat='dd/MM/yyyy'
+                  />
+                  </label>
+                  </div>
 
                 <div className={classes.select}>
                 <label>Пол  

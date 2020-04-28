@@ -3,6 +3,8 @@ import { Container, Row, Col} from 'react-bootstrap';
 
 import AddTraining from '../../components/TrainingCard/AddTraining'
 import TrainingCard from '../../components/TrainingCard/TrainingCard'
+import ChckBox from './CheckBox';
+import ChckBox2 from './CheckBox2';
 
 import classes from './CreateTraining.module.css'
 
@@ -13,11 +15,14 @@ class CreateTraining extends Component {
           visible: false,
           trainings: [ 
               {id: 0, title: 'Тренировка 1', goal: 'Жиросжигание', complexity:'Сложный', duration: '60', text: 'opisanieopisanieopisanie'}
-          ]
+          ],
+          types: [],
+          complexity: []
          };
       }
 
     addTraining = (title, goal, complexity, duration, text) => {
+        
         this.setState(state=> {
             let {trainings} = state;
             trainings.push({
@@ -34,6 +39,17 @@ class CreateTraining extends Component {
 
     render() {
         const { trainings } = this.state;
+
+        const handleFilters = (filters, category) => {
+
+            console.log(filters)
+        //const newFilters = {...Filters}
+
+        //newFilters[category] = filters
+
+        //showFilteredResults(newFilters)
+       // setFilters(newFilters)
+    }
 
         return (
             <div className={classes.CreateTraining}>
@@ -58,7 +74,12 @@ class CreateTraining extends Component {
                     </Col>
                     <Col sm={4} className="p-0">
                         <div className={classes.filters}>
-
+                        <ChckBox 
+                                handleFilters={filters => handleFilters(filters, "types")}
+                            />
+                     <ChckBox2 
+                            handleFilters={filters => handleFilters(filters, "complexity")}
+                     />
                         </div>
                     </Col>
                 </Row>

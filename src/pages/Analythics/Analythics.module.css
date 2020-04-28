@@ -1,0 +1,11 @@
+.chart {
+    position: relative;
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 190px;
+    margin-top: 30px;
+    width: calc(100% - 700px);
+    height: 620px;
+    float: left;
+}

@@ -4,16 +4,41 @@ import classes from './CheckBox.module.css'
 
 const {Panel} = Collapse
 
-const types = [
+const muscles = [
     {
         "_id": 1,
-        "name": "Базовое"
+        "name": "Бицепс"
     },
     {
         "_id": 2,
-        "name": "Изолирующее"
+        "name": "Шея"
     },
+    {
+        "_id": 3,
+        "name": "Плечи"
+    },
+    {
+        "_id": 4,
+        "name": "Предплечья"
+    },
+    {
+        "_id": 5,
+        "name": "Пресс"
+    },
+    {
+        "_id": 6,
+        "name": "Трицепс"
+    },
+    {
+        "_id": 7,
+        "name": "Бедра"
+    },
+    {
+        "_id": 8,
+        "name": "Ягодицы"
+    }
 ]
+
 
 function ChckBox2(props) {
 
@@ -34,7 +59,7 @@ const handleToggle = (value) => {
     //update this checked information into Parent Component 
 }
 
-    const renderCheckboxLists = () => types.map((value, index) => (
+    const renderCheckboxLists = () => muscles.map((value, index) => (
         <React.Fragment key={index}>
             <div >
              <Checkbox 
@@ -51,8 +76,8 @@ const handleToggle = (value) => {
     return (
         <div>
            
-               <Collapse defaultActiveKey={['0']}>
-               <Panel header="Типы упражнений" key="1">
+               <Collapse defaultActiveKey={['1']}>
+               <Panel header="Целевые мышцы" key="1">
                 {renderCheckboxLists()}
                 </Panel>
                 </Collapse>

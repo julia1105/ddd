@@ -7,13 +7,22 @@ const {Panel} = Collapse
 const types = [
     {
         "_id": 1,
-        "name": "Базовое"
+        "name": "Кардио"
     },
     {
         "_id": 2,
-        "name": "Изолирующее"
+        "name": "Силовая"
+    },
+    {
+        "_id": 2,
+        "name": "На выносливость"
+    },
+    {
+        "_id": 2,
+        "name": "На скорость"
     },
 ]
+
 
 function ChckBox(props) {
 
@@ -52,7 +61,7 @@ const handleToggle = (value) => {
         <div>
            
                <Collapse defaultActiveKey={['1']}>
-               <Panel header="Типы упражнений" key="1">
+               <Panel header="Типы тренировки" key="1">
                 {renderCheckboxLists()}
                 </Panel>
                 </Collapse>

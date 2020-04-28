@@ -6,8 +6,30 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
-    width: 900px;
+    width: 800px;
     height: 300px;
+}
+
+.card_title{
+  margin-left: 20%;
+}
+
+.ex_title {
+  font-size: 16px;
+  margin-left: 100px;
+  font-weight: bold;
+}
+
+.add_icon {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 3px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.add_icon:hover {
+opacity: 0.8;
 }
 
 .training_card h3{

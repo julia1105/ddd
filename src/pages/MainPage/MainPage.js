@@ -22,13 +22,19 @@ render(){
             <div className={classes.main_tab}>
             <Tabs className="justify-content-center" defaultActiveKey="info" id="uncontrolled-tab-example">
                 <Tab eventKey="info" title="Информация о спортсмене">
-                   
+                <div className={classes.inf_sp}>
+                   <h3 className={classes.h3}>Выберите спортсмена из списка для отображения информации</h3>
+                   </div>
                 </Tab>
-                <Tab className={classes.calendar} eventKey="calendar" title="Календарь тренировок">
-                    <TrPage />
+                <Tab  eventKey="calendar" title="Календарь тренировок">
+                <div className={classes.inf_sp}>
+                   <h3 className={classes.h3}>Выберите спортсмена из списка для отображения информации</h3>
+                   </div>
                 </Tab>
                 <Tab eventKey="analytics" title="Аналитика">
-                    
+                <div className={classes.inf_sp}>
+                   <h3 className={classes.h3}>Выберите спортсмена из списка для отображения информации</h3>
+                   </div>
                 </Tab>
             </Tabs>
             </div>

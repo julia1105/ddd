@@ -4,18 +4,46 @@ import AthletesList from '../../containers/AthletesList'
 import TrPage from '../TrPage/TrPage'
 import { Tabs, Tab } from 'react-bootstrap'
 import { Container, Row, Col} from 'react-bootstrap'
+import {Line} from 'react-chartjs-2';
 import axios from 'axios'
-import {Line} from 'react-chartjs-2'
 
 import Measurement from '../../containers/MeasurementWindow/Measurement'
 import AddMeasurement from '../../containers/MeasurementWindow/AddMeasurement'
+import Event from '../../containers/Events/Event'
+import AddEvent from '../../containers/Events/Event'
 import EventsWindow from '../../containers/Events/EventsWindow'
 import Test from '../../containers/Tests/Test'
 import AddTest from '../../containers/Tests/AddTest'
 
 import classes from './SportsmanPage.module.css'
+import Analythics from '../Analythics/Analythics'
 
-
+const data = {
+  labels: [ '04.03.2020', '22.03.2020', '12.04.2020'],
+  datasets: [
+    {
+      label: 'Вес',
+      fill: false,
+      lineTension: 0.1,
+      backgroundColor: 'rgba(75,192,192,0.4)',
+      borderColor: 'rgba(75,192,192,1)',
+      borderCapStyle: 'butt',
+      borderDash: [],
+      borderDashOffset: 0.0,
+      borderJoinStyle: 'miter',
+      pointBorderColor: 'rgba(75,192,192,1)',
+      pointBackgroundColor: '#fff',
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+      pointHoverBorderColor: 'rgba(220,220,220,1)',
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: [65, 59, 80]
+    }
+  ]
+};
 
 
 class SportsmanPage extends Component {
@@ -26,7 +54,8 @@ class SportsmanPage extends Component {
             isOpen: false,
             athlete: [],
          measures: [],
-         tests: []
+         tests: [],
+        
          };
       }
 
@@ -41,11 +70,10 @@ class SportsmanPage extends Component {
             value: value,
           };
 
-          alert(testt.data + testt.measure + testt.value)
 
               if (this.props.match && this.props.match.params.id) {
             const id = this.props.match.params.id
-            alert(id)
+          
               axios.post(`/api/newStandart/${id}`, 
               { data: date,
                 test: test,
@@ -102,11 +130,9 @@ class SportsmanPage extends Component {
                 value: value,
               };
 
-              alert(measur.data + measur.measure + measur.value)
-
               if (this.props.match && this.props.match.params.id) {
             const id = this.props.match.params.id
-            alert(id)
+           
               axios.post(`/api/newParameter/${id}`, 
               { data: date,
                 measure: measure,
@@ -141,11 +167,10 @@ class SportsmanPage extends Component {
         console.log(error.response);
       });
 
-        this.setState( state => {
-            let {measures} = state;
-            delete measures[index];
-            return measures;
-        })
+      this.setState(({ measures }) => {
+        const newGroups = measures.filter(el => el.id !== id);
+        return {measures: newGroups};
+      });
     }
      
       componentDidMount() {
@@ -183,13 +208,15 @@ class SportsmanPage extends Component {
               .catch(function (error) {
                 console.log(error.response);
               });
-            }     
+
+            }
         }
 
 render(){
     const { measures } = this.state;
     const { athlete } = this.state;
     const { tests } = this.state;
+   
 
     return (
         <div>
@@ -203,20 +230,23 @@ render(){
                     </div>        
                         <div className={classes.info}>
                             <div className={classes.left}>
-                            <p>{athlete.name}
+                            <p>{athlete.name} {athlete.surname}
                             <img className={classes.edit_icon} src="https://image.flaticon.com/icons/svg/1250/1250925.svg" alt="Edit icon" height="15px" width="15px"/>
                             </p>
                             <p>{athlete.group_id}</p>
                             <p>{athlete.email}</p>
                             </div>
                             <div  className={classes.right}>
-                            <p>Возраст: 20</p>
-                            <p>Рост: 185</p>
-                            <p>Вес: 80</p>
+                            <p>Дата рождения: {athlete.age}</p>
+                            <p>Рост: {athlete.heigth}</p>
+                            <p>Вес: {athlete.weigth}</p>
                             </div>
                         </div>
                     </div>
-                        <EventsWindow />
+              
+                                  <div>
+                              <EventsWindow />
+                          </div>
 
                         <div>
                 <div className={classes.measurement}>
@@ -284,7 +314,27 @@ render(){
                     <TrPage />
                 </Tab>
                 <Tab eventKey="analytics" title="Аналитика">
+            
+                <div className={classes.inf_sp}>
+                    <div className={classes.Analythics}>
+                    <div>
+                          <div className={classes.select}>
+                          <select className={classes.select_box} name="" value={this.state.sex} onChange={this.inputChange}>
+                            <option className={classes.options_container} value="мужчина">Вес</option>
+                            <option className={classes.options_container} value="женщина">Рост</option>
+                            <option className={classes.options_container} value="женщина">Процент жировой массы</option>
+                            <option className={classes.options_container} value="женщина">Средний пульс в покое</option>
+                            <option className={classes.options_container} value="женщина">Максимальный пульс</option>
+                            <option className={classes.options_container} value="женщина">Вариабельность пульса</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div className={classes.chart}>
+                    <Line data={data} />
                     
+                    </div>
+                    </div>
+                 </div>
                 </Tab>
             </Tabs>
             </div>

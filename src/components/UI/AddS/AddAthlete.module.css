@@ -10,6 +10,11 @@
     font-weight: bold;
     font-size: 12px;
 }
+.datepicker{
+  padding-left: 20%;
+  padding-right: 20%;
+  margin-top: 20px;
+}
 
 .add_group_form {
     width: 235px;

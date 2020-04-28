@@ -32,9 +32,12 @@ class AddGroup extends Component{
           return;
         }
         if(input){
-          axios.post('/api/:userId/newGroup', {title: input, userId: '1'}).then(res => {
+          axios.post(`/api/${1}/newGroup`, {title: input, userId: 1}).then(res => {
             console.log(res);
           })
+          .catch(function (error) {
+            console.log(error.response);
+          });
 
           this.props.addGroup(input);
           this.setState({input: ''});

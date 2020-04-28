@@ -23,7 +23,10 @@ export default class AthletesList extends Component {
         })
     }
 
-    addAthlete = (name, surname, sex, email, group_id) => {
+    addAthlete = (name, surname, sex,  age, weigth, heigth, email, group_id) => {
+
+        const v = age;
+        const ages = new Date(v).toLocaleDateString()
 
         this.setState(state => {
             let {athletes} = state;
@@ -33,15 +36,20 @@ export default class AthletesList extends Component {
                 surname: surname,
                 sex: sex,
                 email: email,
+                age: ages,
+                weigth: weigth,
+                heigth: heigth,
                 group_id: group_id
               };
 
-              alert(athlete.name + athlete.surname + athlete.email + athlete.sex + athlete.group_id)
-
+              
               axios.post('/api/newParticipant', { name: name,
                 surname: surname,
                 sex: sex,
                 email: email,
+                age: ages,
+                weigth: weigth,
+                heigth: heigth,
                 group_id: group_id})
                     .then(res => {
                     console.log(res);
@@ -56,18 +64,25 @@ export default class AthletesList extends Component {
                 surname: surname,
                 sex: sex,
                 email: email,
+                age: ages,
+                weigth: weigth,
+                heigth: heigth,
                 group_id: group_id
             });
-            return athletes;
 
+            axios.get('/api/listPartWithGroup').then(res => {
+                console.log(res);
+                this.setState({athletes: res.data})
+            })
+            
+            return athletes
         });
     };
 
-    deleteAthlete = id => {
+    deleteAthlete = (participant_id, id) => {
         const index = this.state.athletes.map(athlete => athlete.id).indexOf(id);
-        alert(index)
         
-        axios.delete(`api/delSportsmen/${id}`)
+        axios.delete(`/api/delSportsmen/${participant_id}`)
         .then(res => {
         console.log(res);
       })
@@ -75,12 +90,10 @@ export default class AthletesList extends Component {
         console.log(error.response);
       });
 
-        this.setState( state => {
-            let {athletes} = state;
-            
-            delete athletes[index];
-            return athletes;
-        })
+      this.setState(({ athletes }) => {
+        const newGroups = athletes.filter(el => el.participant_id !== participant_id);
+        return {athletes: newGroups};
+      });
     }
 
 
@@ -89,13 +102,20 @@ export default class AthletesList extends Component {
 
         return (
             <div className={classes.AthletesList}>
-                    {athletes.map(athlete =>(
+                {athletes.length === 0 ? 
+                    <div> 
+                        <p>Нет спортсменов для отображения</p>
+                    </div> :
+                    <div>
+                        {athletes.map(athlete =>(
                         <Athlete 
-                            deleteAthlete = {() => this.deleteAthlete(athlete.participant_id)}
+                            deleteAthlete = {() => this.deleteAthlete(athlete.participant_id, athlete.id)}
                             athlete = {athlete} key={athlete.participant_id}>
                         </Athlete>
                     ))
                     }
+                    </div> 
+                }
                     <div className = {classes.add_ul}>
                         <AddAthlete addAthlete = {this.addAthlete}>
                             </AddAthlete>

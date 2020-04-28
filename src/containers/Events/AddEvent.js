@@ -23,28 +23,28 @@ class AddEvent extends Component{
         super(props);
         this.state = { 
           visible: false,
-          startDate: new Date(),
-          text: ''};
+          data: new Date(),
+          deinition: ''};
           this.inputChange = this.inputChange.bind(this);
       }
     
      onClose = () => {
-        this.setState({startDate: new Date()});
-        this.setState({text: ''});
+        this.setState({data: new Date()});
+        this.setState({deinition: ''});
       }
 
       addEvent = () => {
-        const {startDate} = this.state;
-        const {text} = this.state;
+        const {data} = this.state;
+        const {deinition} = this.state;
 
-        if (!startDate & !text) {
+        if (!data & !deinition) {
           alert('Заполните все поля!');
           return;
         }
        
-          this.props.addEvent(startDate, text);
-          this.setState({startDate: new Date()});
-          this.setState({text: ''});
+          this.props.addEvent(data, deinition);
+          this.setState({data: new Date()});
+          this.setState({deinition: ''});
           this.setState({ visible: false })
       
       };
@@ -59,7 +59,7 @@ class AddEvent extends Component{
 
       handleChange = date => {
         this.setState({
-          startDate: date
+          data: date
         })
       }
       
@@ -83,7 +83,7 @@ class AddEvent extends Component{
                 
                 <div className={classes.datepicker}>
                 <label>Дата: 
-                  <DatePicker locale="ru" selected={this.state.startDate}
+                  <DatePicker locale="ru" selected={this.state.data}
                       onChange={this.handleChange}
                       dateFormat='dd/MM/yyyy'
                   />
@@ -91,8 +91,8 @@ class AddEvent extends Component{
                 </div>
 
                 <div className={classes.form}>
-                <input type="text" name="text" onChange={this.inputChange} value={this.state.text} required />
-                <label for="text" className={classes.label_name}>
+                <input type="text" name="deinition" onChange={this.inputChange} value={this.state.deinition} required />
+                <label for="deinition" className={classes.label_name}>
                   <span className={classes.content_name}>Название события</span>
                 </label>
                 </div>

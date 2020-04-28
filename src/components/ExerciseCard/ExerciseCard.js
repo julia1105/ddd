@@ -24,14 +24,6 @@ const ExerciseCard = ({exercise, ...props}) => {
                         <span>{exercise.type}</span>
                     </li>
                 </ul>
-                <ul className={classes.exercise_param}>
-                    <li className={classes.exercise_param_name}>
-                        <span>Целевые мышцы:</span>
-                    </li>
-                    <li className={classes.exercise_param_value}>
-                        <span>{exercise.type}</span>
-                    </li>
-                </ul>
                 <p>{exercise.definition}</p>
                 </Col>
                 </Row>

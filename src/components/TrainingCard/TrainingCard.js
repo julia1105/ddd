@@ -9,9 +9,10 @@ const TrainingCard = ({training, ...props}) => {
         <div className={classes.training_card}>
         <Container>
             <Row>
-            <Col>
-                <h3 className={classes.card_title}>{training.title}</h3>  
-
+            <h3 className={classes.card_title}>{training.title}</h3> 
+            </Row>
+            <Row>
+            <Col sm={7}>
                 <ul className={classes.training_param}>
                     <li className={classes.training_param_name}>
                         <span>Цель:</span>
@@ -42,6 +43,13 @@ const TrainingCard = ({training, ...props}) => {
                 <div className={classes.training_param}>
                 <p className={classes.training_param_name}>Описание: {training.text}</p>
                 </div>
+                </Col>
+                <Col  sm={5}>
+                    <p className={classes.ex_title}>
+                        Упражнения
+                        <img className={classes.add_icon} src="https://image.flaticon.com/icons/svg/1237/1237946.svg" alt="Add icon"  height="18px" width="18px"/>
+                        </p>
+                    
                 </Col>
                 </Row>
                 </Container>

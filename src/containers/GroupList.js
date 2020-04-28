@@ -32,17 +32,19 @@ export default class GroupList extends Component {
         });
     };
 
-    deleteGroup = id => {
-        axios.delete(`/api/delGroup/${this.state.id}`)
+    deleteGroup = (group_id, id) => {
+        axios.delete(`/api/delGroup/${group_id}`)
         .then(res => {
           console.log(res);
         })
-        const index = this.state.groups.map(group => group.id).indexOf(id);
-        this.setState( state => {
-            let {groups} = state;
-            delete groups[index];
-            return groups;
-        })
+        .catch(function (error) {
+            console.log(error.response);
+          });
+
+        this.setState(({ groups }) => {
+            const newGroups = groups.filter(el => el.group_id !== group_id);
+            return {groups: newGroups};
+          });
     }
 
     render() {
@@ -50,13 +52,20 @@ export default class GroupList extends Component {
 
         return (
             <div className={classes.GroupList}>
-                    {groups.map(group =>(
+                 {groups.length === 0 ? 
+                    <div> 
+                        <p>Нет групп для отображения</p>
+                    </div> :
+                    <div>
+                         {groups.map(group =>(
                         <Group 
-                            deleteGroup = {() => this.deleteGroup(group.id)}
+                            deleteGroup = {() => this.deleteGroup(group.group_id, group.id)}
                             group = {group} key={group.id}>
                         </Group>
                     ))
                     }
+                    </div> 
+                }
                     <div className = {classes.add_ul}>
                         <AddGroup addGroup = {this.addGroup}>
                             </AddGroup>

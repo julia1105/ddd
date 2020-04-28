@@ -6,7 +6,9 @@ import ExerciseCard from '../../components/ExerciseCard/ExerciseCard'
 
 import classes from './ExerciseBase.module.css'
 import AddExercise from '../../components/ExerciseCard/AddExercise';
-import ChckBox from './CheckBox';
+import RadioBox from './RadioBox';
+import ChckBox2 from './CheckBox2';
+
 
 class ExerciseBase extends Component {
     constructor(props) {
@@ -15,7 +17,8 @@ class ExerciseBase extends Component {
           visible: false,
           exercises: [],
           Filters: { 
-              types: []
+              types: [],
+              muscles: []
           }
          };
       }
@@ -27,15 +30,24 @@ class ExerciseBase extends Component {
         })
     }
 
-      addExercise = (image, title, type, text) => {
+      addExercise = (image, title, type, definition) => {
         this.setState(state=> {
             let {exercises} = state;
+
+            const ex = {
+                image: image,
+                mame: title,
+                type: type,
+                definition: definition
+              };
+
+              alert(ex.definition)
 
             axios.post('/api/newExercises', 
             { img: image,
                 name: title,
                 type: type,
-                definition: text})
+                definition: definition})
                     .then(res => {
                     console.log(res);
                 })
@@ -46,9 +58,9 @@ class ExerciseBase extends Component {
             exercises.push({
                 id: exercises.length !== 0 ? exercises.length : 0,
                 image: image,
-                title: title,
+                name: title,
                 type: type,
-                text: text
+                definition: definition
             });
             return exercises;
         });
@@ -58,8 +70,6 @@ class ExerciseBase extends Component {
     render() {
         
         const { exercises } = this.state;
-
-        
 
         const handleFilters = (filters, category) => {
 
@@ -94,8 +104,11 @@ class ExerciseBase extends Component {
                     </Col>
                     <Col sm={4} className="p-0">
                         <div className={classes.filters}>
-                            <ChckBox 
+                            <RadioBox 
                                 handleFilters={filters => handleFilters(filters, "types")}
+                            />
+                            <ChckBox2 
+                                handleFilters={filters => handleFilters(filters, "muscles")}
                             />
                         </div>
                     </Col>

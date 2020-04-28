@@ -17,8 +17,11 @@ export const Header = () => {
     }
 
         return (
+            <div className={classes.header}>
             <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/main">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="/main">
+            <img className={classes.delete_icon} src="https://image.flaticon.com/icons/svg/1414/1414446.svg" alt="Add icon"  height="50px" width="50px"/>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -31,11 +34,7 @@ export const Header = () => {
                 <Link to ="/" className="nav-link">Выйти</Link>
             </Navbar.Collapse>
             </Navbar>
-
-
-
-
-
+            </div>
 
         )
     }

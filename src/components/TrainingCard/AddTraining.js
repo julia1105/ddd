@@ -12,6 +12,21 @@ const divStyle = {
   padding: '50px'
 };
 
+const Level = [
+  {key:1, value:"Предельный"},
+  {key:2, value:"Большой"},
+  {key:3, value:"Существенный"},
+  {key:4, value:"Средний"},
+  {key:5, value:"Небольшой"},
+]
+
+const Type = [
+  {key:1, value:"Кардио"},
+  {key:2, value:"Силовая"},
+  {key:3, value:"На выносливость"},
+  {key:4, value:"На скорость"}
+]
+
 class AddTraining extends Component{
 
     constructor(props) {
@@ -19,8 +34,8 @@ class AddTraining extends Component{
         this.state = { 
           visible: false,
           title: '',
-          goal: '',
-          complexity: '',
+          goal: 1,
+          complexity: 1,
           duration: '',
           text: ''};
           this.inputChange = this.inputChange.bind(this);
@@ -28,8 +43,8 @@ class AddTraining extends Component{
     
      onClose = () => {
         this.setState({title: ''});
-        this.setState({goal: ''});
-        this.setState({complexity: ''});
+        this.setState({goal: 1});
+        this.setState({complexity: 1});
         this.setState({duration: ''});
         this.setState({text: ''});
       }
@@ -47,8 +62,8 @@ class AddTraining extends Component{
         }
             this.props.addTraining(title, goal, complexity, duration, text);
             this.setState({title: ''});
-            this.setState({goal: ''});
-            this.setState({complexity: ''});
+            this.setState({goal: 1});
+            this.setState({complexity: 1});
             this.setState({duration: ''});
             this.setState({text: ''});
             this.setState({ visible: false })
@@ -91,19 +106,23 @@ class AddTraining extends Component{
                              </label>
                             </div>
 
-                            <div className={classes.form}>
-                            <input type="text" name="goal" onChange={this.inputChange} value={this.state.goal} required />
-                            <label for="goal" className={classes.label_name}>
-                             <span className={classes.content_name}>Цель</span>
-                             </label>
+                            <div className={classes.select}>
+                            <label>Тип тренировки
+                                  <select className={classes.select_box} name="goal" value={this.state.goal} onChange={this.inputChange}>
+                                  {Type.map(item => (
+                                    <option key={item.key} value={item.key}>{item.value}</option>
+                                  ))}
+                            </select>
+                            </label>
                             </div>
 
+
                             <div className={classes.select}>
-                            <label>Сложность: 
+                            <label>Уровень тренировочной нагрузки 
                                   <select className={classes.select_box} name="complexity" value={this.state.complexity} onChange={this.inputChange}>
-                                  <option className={classes.options_container} value="Легкая">Легкая</option>
-                                  <option className={classes.options_container} value="Средняя">Средняя</option>
-                                  <option className={classes.options_container} value="Тяжелая">Тяжелая</option>
+                                  {Level.map(item => (
+                                    <option key={item.key} value={item.key}>{item.value}</option>
+                                  ))}
                             </select>
                             </label>
                             </div>
@@ -111,7 +130,7 @@ class AddTraining extends Component{
                             <div className={classes.form}>
                             <input type="text" name="duration" onChange={this.inputChange} value={this.state.duration} required />
                             <label for="duration" className={classes.label_name}>
-                             <span className={classes.content_name}>Длительность</span>
+                             <span className={classes.content_name}>Длительность (в минутах)</span>
                              </label>
                             </div>
 

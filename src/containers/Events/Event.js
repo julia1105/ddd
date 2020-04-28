@@ -13,13 +13,12 @@ const Event = ({event, ...props}) => {
         </div>
       );
 
-      const value = event.startDate;
 
     return (
 
         <div className = {classes.event}>
-            <Col sm={6} className="p-0">{new Date(value).toLocaleDateString()}</Col>
-            <Col sm={5} >{event.text}</Col>
+            <Col sm={6} className="p-0"></Col>
+            <Col sm={5} ></Col>
             <Col ><ActionBtn /></Col>
         </div>
     )
