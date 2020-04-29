@@ -6,7 +6,7 @@ import ExerciseCard from '../../components/ExerciseCard/ExerciseCard'
 
 import classes from './ExerciseBase.module.css'
 import AddExercise from '../../components/ExerciseCard/AddExercise';
-import RadioBox from './RadioBox';
+import ChckBox from './CheckBox';
 import ChckBox2 from './CheckBox2';
 
 
@@ -66,20 +66,41 @@ class ExerciseBase extends Component {
         });
     };
 
+    deleteExercise = (exercise_id) => {
+     
+        axios.delete(`/api/delExercise/${exercise_id}`)
+        .then(res => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+
+      this.setState(({ exercises }) => {
+        const newGroups = exercises.filter(el => el.exercise_id !== exercise_id);
+        return {exercises: newGroups};
+      });
+    }
  
     render() {
         
         const { exercises } = this.state;
 
+        const showFilteredResults = (filters) => {
+
+
+        }
+
         const handleFilters = (filters, category) => {
 
                 console.log(filters)
-            //const newFilters = {...Filters}
+            // const newFilters = {...Filters}
 
-            //newFilters[category] = filters
+            // newFilters[category] = filters
 
-            //showFilteredResults(newFilters)
-           // setFilters(newFilters)
+            
+            // showFilteredResults(newFilters)
+            // this.setState({Filters: newFilters})
         }
 
         return (
@@ -97,6 +118,7 @@ class ExerciseBase extends Component {
                     <Col className={classes.excersice_card1} sm={8} xs={8} className="p-0">
                     {exercises.map(exercise =>(
                         <ExerciseCard 
+                        deleteExercise = {() => this.deleteExercise(exercise.exercise_id)}
                         exercise = {exercise} key={exercise.exercise_id}>
                         </ExerciseCard>
                         ))
@@ -104,7 +126,7 @@ class ExerciseBase extends Component {
                     </Col>
                     <Col sm={4} className="p-0">
                         <div className={classes.filters}>
-                            <RadioBox 
+                            <ChckBox 
                                 handleFilters={filters => handleFilters(filters, "types")}
                             />
                             <ChckBox2 

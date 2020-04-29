@@ -21,8 +21,7 @@ class AddExercise extends Component{
           image: '',
           title: '',
           type: 'Базовое',
-          muscles: '',
-          definition: '1'};
+          definition: ''};
           this.inputChange = this.inputChange.bind(this);
       }
     
@@ -30,7 +29,6 @@ class AddExercise extends Component{
         this.setState({image: ''});
         this.setState({title: ''});
         this.setState({type: 'Базовое'});
-        this.setState({muscles: 'Базовое'});
         this.setState({definition: ''});
       }
 
@@ -38,7 +36,6 @@ class AddExercise extends Component{
         const {image} = this.state;
         const {title} = this.state;
         const {type} = this.state;
-        const {muscles} = this.state;
         const {definition} = this.state;
 
         if (!title & !definition) {
@@ -46,11 +43,10 @@ class AddExercise extends Component{
           return;
         }
        
-            this.props.addExercise(image, title, type, muscles, definition);
+            this.props.addExercise(image, title, type, definition);
             this.setState({image: ''});
             this.setState({title: ''});
             this.setState({type: 'Базовое'});
-            this.setState({muscles: 'Базовое'});
             this.setState({definition: ''});
             this.setState({ visible: false })
       
@@ -108,15 +104,7 @@ class AddExercise extends Component{
                             </label>
                             </div>
 
-                            {/* <div className={classes.select}>
-                            <label>Целевые мышцы
-                                  <select className={classes.select_box} name="muscles" value={this.state.muscles} onChange={this.inputChange}>
-                                  <option className={classes.options_container} value="Базовое">Базовое</option>
-                                  <option className={classes.options_container} value="Изолирующее">Изолирующее</option>
-                            </select>
-                            </label>
-                            </div> */}
-                              <div className={classes.form}>
+                            <div className={classes.form}>
                             <input type="text" name="definition" onChange={this.inputChange} value={this.state.definition} required />
                             <label for="definition" className={classes.label_name}>
                              <span className={classes.content_name}>Описание упражнения</span>

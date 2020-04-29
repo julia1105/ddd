@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { Container, Row, Col} from 'react-bootstrap';
+import axios from 'axios'
 
 import AddTraining from '../../components/TrainingCard/AddTraining'
 import TrainingCard from '../../components/TrainingCard/TrainingCard'
@@ -13,19 +14,46 @@ class CreateTraining extends Component {
         super(props);
         this.state = { 
           visible: false,
-          trainings: [ 
-              {id: 0, title: 'Тренировка 1', goal: 'Жиросжигание', complexity:'Сложный', duration: '60', text: 'opisanieopisanieopisanie'}
-          ],
+          trainings: [],
           types: [],
           complexity: []
          };
       }
 
+
+      componentDidMount() {
+        axios.get('/api/listTrain').then(res => {
+            console.log(res);
+            this.setState({trainings: res.data})
+        })
+    }
+
     addTraining = (title, goal, complexity, duration, text) => {
-        
         this.setState(state=> {
             let {trainings} = state;
-            trainings.push({
+
+            const tr = {
+                name: title,
+                goal: goal,
+                complexity: complexity,
+                duration: duration,
+                text: text
+              };
+
+
+            axios.post('/api/newExercises', 
+            { img: image,
+                name: title,
+                type: type,
+                definition: definition})
+                    .then(res => {
+                    console.log(res);
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                  });
+
+                trainings.push({
                 id: trainings.length !== 0 ? trainings.length : 0,
                 title: title,
                 goal: goal,
@@ -36,6 +64,27 @@ class CreateTraining extends Component {
             return trainings;
         });
     };
+
+    deleteExercise = (exercise_id) => {
+     
+        axios.delete(`/api/delExercise/${exercise_id}`)
+        .then(res => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        console.log(error.response);
+      });
+
+      this.setState(({ exercises }) => {
+        const newGroups = exercises.filter(el => el.exercise_id !== exercise_id);
+        return {exercises: newGroups};
+      });
+    }
+
+
+
+
+   
 
     render() {
         const { trainings } = this.state;
@@ -67,7 +116,8 @@ class CreateTraining extends Component {
                     <Col className={classes.excersice_card1} sm={8} xs={8} className="p-0">
                         {trainings.map(training =>(
                         <TrainingCard 
-                        training = {training} key={training.id}>
+                        deleteTraining = {() => this.deleteTraining(training.train_id)}
+                        training = {training} key={training.train_id}>
                         </TrainingCard>
                         ))
                     }

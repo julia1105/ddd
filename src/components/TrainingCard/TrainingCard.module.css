@@ -251,3 +251,14 @@ outline: none;
   .select_box .option .radio {
     display: none;
   }
+
+  .more_icon {
+    margin-left: 100px;
+    opacity: 0.5;
+  }
+
+
+  .more_icon:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
