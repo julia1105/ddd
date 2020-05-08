@@ -6,7 +6,7 @@ const Group = ({group, ...props}) => {
         <div className={classes.action_btn}>
          
             <span aria-label="delete" role="img" onClick={props.deleteGroup}>
-            <img className={classes.delete_icon} src="https://icon-icons.com/icons2/950/PNG/256/cross-symbol_icon-icons.com_74149.png" alt="Add icon"  height="15px" width="15px"/>
+            <img className={classes.delete_icon} src="https://image.flaticon.com/icons/svg/447/447047.svg" alt="Add icon"  height="12px" width="12px"/>
             </span>
           
         </div>

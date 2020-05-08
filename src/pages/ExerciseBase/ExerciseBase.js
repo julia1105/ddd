@@ -28,6 +28,9 @@ class ExerciseBase extends Component {
             console.log(res);
             this.setState({exercises: res.data})
         })
+        .catch(function (error) {
+            console.log(error.response);
+          });
     }
 
       addExercise = (image, title, type, definition) => {

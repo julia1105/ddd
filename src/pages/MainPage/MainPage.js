@@ -1,13 +1,10 @@
 import React, {Component} from 'react'
 import GroupList from '../../containers/GroupList'
 import AthletesList from '../../containers/AthletesList'
-import TrPage from '../TrPage/TrPage'
-import { Tabs, Tab, Nav } from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap';
 
 
 import classes from './MainPage.module.css'
-import InfoAthletes from '../../containers/InfoAthletes';
-
 
 class MainPage extends Component {
 

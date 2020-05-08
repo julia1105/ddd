@@ -12,6 +12,7 @@
   }
 
   .test_main {
+    
     background: #fff;
     border-radius: 10px;
     height: 300px;
@@ -47,6 +48,8 @@
 }
 
 .test {
+    font-size: 15px;
+    font-weight: 570;
     display: flex;
     padding: 5px;
     margin: 5px;

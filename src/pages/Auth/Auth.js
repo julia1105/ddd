@@ -3,7 +3,6 @@ import {useHttp} from '../../hooks/http.hook'
 import {useMessage} from '../../hooks/message.hook'
 import {AuthContext} from '../../context/AuthContext'
 import classes from './Auth.module.css'
-import Button from '../../components/UI/Button/Button'
 import Input from '../../components/UI/Input/Input'
 
 export const Auth = () => { 
@@ -55,16 +54,16 @@ export const Auth = () => {
                     label="Пароль"
                  />
 
-                <Button type="success"
+                <button 
                     disabled = {loading}
                     >Войти
-                </Button>
+                </button>
 
-                <Button type="primary"
+                <button 
                     onClick={registerHandler}
                     disabled = {loading}
                      >Зарегистрироваться
-                </Button>
+                </button>
             </form>
         </div>
     </div>

@@ -7,35 +7,51 @@ const {Panel} = Collapse
 const muscles = [
     {
         "_id": 1,
-        "name": "Бицепс"
-    },
-    {
-        "_id": 2,
         "name": "Шея"
     },
     {
-        "_id": 3,
+        "_id": 2,
         "name": "Плечи"
     },
     {
+        "_id": 3,
+        "name": "Бицепс"
+    },
+    {
         "_id": 4,
-        "name": "Предплечья"
-    },
-    {
-        "_id": 5,
-        "name": "Пресс"
-    },
-    {
-        "_id": 6,
         "name": "Трицепс"
     },
     {
+        "_id": 5,
+        "name": "Широчайшие"
+    },
+    {
+        "_id": 6,
+        "name": "Предплечья"
+    },
+    {
         "_id": 7,
-        "name": "Бедра"
+        "name": "Грудь"
     },
     {
         "_id": 8,
+        "name": "Пресс"
+    },
+    {
+        "_id": 9,
+        "name": "Бедра"
+    },
+    {
+        "_id": 10,
         "name": "Ягодицы"
+    },
+    {
+        "_id": 11,
+        "name": "Квадрицепсы"
+    },
+    {
+        "_id": 12,
+        "name": "Икры"
     }
 ]
 
@@ -77,7 +93,7 @@ const handleToggle = (value) => {
         <div>
            
                <Collapse defaultActiveKey={['1']}>
-               <Panel header="Целевые мышцы" key="1">
+               <Panel classname = {classes.ch_text} header="Целевые мышцы" key="1">
                 {renderCheckboxLists()}
                 </Panel>
                 </Collapse>

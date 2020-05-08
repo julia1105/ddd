@@ -1,23 +1,42 @@
 .training_card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 3px;
-    padding: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
     width: 800px;
-    height: 300px;
 }
 
 .card_title{
   margin-left: 20%;
 }
 
-.ex_title {
+.trex {
+  border-radius: 10px;
+  box-shadow: 0 0 3px;
+  padding-top: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 800px;
+  height: 350px;
+}
+
+.trexx {
+  margin-left: 20px;
+  margin-top: 10px;
   font-size: 16px;
-  margin-left: 100px;
   font-weight: bold;
+}
+
+.upr {
+  margin-bottom: 15px;
+}
+
+
+.ex_title {
+  margin-left: 35%;
 }
 
 .add_icon {
@@ -28,24 +47,48 @@
   opacity: 0.5;
 }
 
-.add_icon:hover {
-opacity: 0.8;
+.ex_scroll{
+  overflow-y: scroll;
+  height: 200px;
+  overflow-x: hidden;
 }
 
 .training_card h3{
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 20px;
+   
 }
 
 .card_img {
-    background-color: red;
     border-radius: 10px;
     max-width: 100%;
     height: 270px;
     box-shadow: 0 0 5px;
 }
 
+.add_ex{
+  width: 300px;
+  height: 35px;
+  border-radius: 20px;
+  border: 2px solid #808080;
+  color:rgb(11, 14, 31);
+  cursor: pointer;
+  padding: 3px 42%;
+  margin-left: 68%;
+}
+
+.add_ex:hover .add_icon{
+  opacity: 0.8;
+}
+
+.add_ex:hover {
+  border: 2px solid #333333;
+}
+
+
+.add_ul{
+  margin-top: 15px;
+}
 .add_button{
   padding: 10px 20px;
   border-radius: 20px;
@@ -77,7 +120,7 @@ outline: none;
 }
 
 .training_param_name {
-    color: #707679;
+    color: #383b3d;
     padding: 3px 0;
     font-size: 16px;
     font-weight: 300;
@@ -89,6 +132,7 @@ outline: none;
 .training_param_value{
     color: #456a8d;
     margin-left: 10px;
+    margin-right: 40px;
     font-size: 14px;
     font-weight: 700;
     line-height: 20px;
@@ -140,6 +184,20 @@ outline: none;
     color: black;
   }
   
+  .button_trex{
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid rgb(56, 56, 56);
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30%;
+    width: 100px;
+  }
+
   .button {
     padding: 10px 20px;
     border-radius: 20px;
@@ -262,3 +320,12 @@ outline: none;
     opacity: 0.8;
     cursor: pointer;
   }
+
+  .slick-prev:before,
+.slick-next:before {
+  color: yellow;
+}
+
+.text_area{
+  resize: none;
+}

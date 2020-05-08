@@ -28,23 +28,24 @@ class CreateTraining extends Component {
         })
     }
 
-    addTraining = (title, goal, complexity, duration, text) => {
+    addTraining = (name, type, level, duration, definition) => {
         this.setState(state=> {
             let {trainings} = state;
 
             const tr = {
-                name: title,
-                goal: goal,
-                complexity: complexity,
+                name: name,
+                type: type,
+                level: level,
                 duration: duration,
-                text: text
+                definition: definition
               };
 
 
-            axios.post('/api/newExercises', 
-            { img: image,
-                name: title,
+            axios.post('/api/newTrain', 
+            { name: name,
                 type: type,
+                level: level,
+                duration: duration,
                 definition: definition})
                     .then(res => {
                     console.log(res);
@@ -55,19 +56,19 @@ class CreateTraining extends Component {
 
                 trainings.push({
                 id: trainings.length !== 0 ? trainings.length : 0,
-                title: title,
-                goal: goal,
-                complexity: complexity,
+                name: name,
+                type: type,
+                level: level,
                 duration: duration,
-                text: text
+                definition: definition
             });
             return trainings;
         });
     };
 
-    deleteExercise = (exercise_id) => {
+    deleteTraining = (train_id) => {
      
-        axios.delete(`/api/delExercise/${exercise_id}`)
+        axios.delete(`/api/delTrain/${train_id}`)
         .then(res => {
         console.log(res);
       })
@@ -75,16 +76,12 @@ class CreateTraining extends Component {
         console.log(error.response);
       });
 
-      this.setState(({ exercises }) => {
-        const newGroups = exercises.filter(el => el.exercise_id !== exercise_id);
-        return {exercises: newGroups};
+      this.setState(({ trainings }) => {
+        const newTrains = trainings.filter(el => el.train_id !== train_id);
+        return {trainings: newTrains};
       });
     }
 
-
-
-
-   
 
     render() {
         const { trainings } = this.state;

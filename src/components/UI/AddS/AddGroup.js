@@ -25,7 +25,9 @@ class AddGroup extends Component{
         this.setState({input: ''});
       }
 
-      addGroup = () => {
+      onSubmit = (event) => {
+        event.preventDefault();
+
         const {input} = this.state;
         if (!input) {
           alert('Введите название группы');
@@ -66,16 +68,24 @@ class AddGroup extends Component{
                     onClick={this.show.bind(this)}
                 >Добавить группу</button>
                 
-                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} onClick={this.onClose} width={500} height={200} customStyles={divStyle} >
+                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} onClick={this.onClose} width={500} height={300} customStyles={divStyle} >
+
+                <form onSubmit={this.onSubmit}>
+                <div className={classes.title}>
+                <h3>Новая группа</h3>
+                <hr></hr>
+                </div>
+
+                
                 <div className={classes.form}>
                 <input type="text" name="name" onChange={this.inputChange} value={input} required />
                 <label for="name" className={classes.label_name}>
                   <span className={classes.content_name}>Название группы</span>
                 </label>
                 </div>
-                <button className={classes.button} onClick={this.addGroup}>
-                  Добавить
-                </button>
+
+                <input className={classes.button} type="submit" value="Добавить" />
+                </form>
                 </Rodal>
               
              </div>

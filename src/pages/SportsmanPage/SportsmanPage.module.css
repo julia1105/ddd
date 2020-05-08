@@ -83,7 +83,7 @@
     border-radius: 10px;
     margin: 20px 20px;
     width: calc(100% - 1200px);
-    height: 250px;
+    height: 220px;
     float: left;
 }
     
@@ -91,6 +91,8 @@
     width: calc(100% - 125px);
     margin-left: 30px;
     padding: 20px 20px 10px 20px;
+    font-size: 16px;
+    color: black;
 }
 
 .edit_icon {
@@ -104,8 +106,8 @@
 }
 
   .img{
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     
   }
 
@@ -119,20 +121,15 @@
   .right {
     position: absolute; 
     top: 20px;
-    left: 350px;
+    left: 380px;
   }
 
   .measurement{
     background: #fff;
     border-radius: 10px;
-    height: 300px;
+    height: 400px;
     margin: 20px 20px;
     width: calc(100% - 1200px);
-  }
-
-  .table_scroll {
-    overflow-y: scroll;
-    height: 190px;
   }
 
   .nav_line{
@@ -148,17 +145,6 @@
       font-size: 16px;
   }
 
-  .add_icon {
-    position: absolute;
-    left: 675px;
-    top: 6px;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.add_icon:hover {
-  opacity: 0.8;
-}
 
 .table_header{
     font-weight: bold;
@@ -284,10 +270,10 @@
 .test_main {
   background: #fff;
   border-radius: 10px;
-  height: 300px;
+  height: 400px;
   width: calc(100% - 1150px);
   margin-left: 760px;
-  margin-top: -320px;
+  margin-top: -418px;
 }
 
 .test {
@@ -325,7 +311,7 @@
   background: #fff;
   border-radius: 10px;
   width: 200px;
-  margin-left: 755px;
+  margin-left: 455px;
   margin-top: 20px;
   width: calc(100% - 1150px);
   height: 250px;
@@ -333,7 +319,7 @@
 
 .table_scroll {
   overflow-y: scroll;
-  height: 140px;
+  height: 290px;
 }
 
 .nav_line{
@@ -347,18 +333,6 @@
     color: white;
     font-style: bold;
     font-size: 16px;
-}
-
-.add_icon {
-  position: absolute;
-  left: 720px;
-  top: 5px;
-  cursor: pointer;
-  opacity: 0.5;
-}
-
-.add_icon:hover {
-opacity: 0.8;
 }
 
 .table_header{
@@ -476,5 +450,171 @@ outline: none;
 .title {
 color: rgb(39, 39, 39);
 text-align: center;
+}
 
+.eventt {
+  background: #fff;
+  border-radius: 10px;
+  width: 200px;
+  margin-left: 755px;
+  margin-top: 20px;
+  width: calc(100% - 1150px);
+  height: 220px;
+}
+
+.table_scroll1 {
+  overflow-y: scroll;
+  height: 110px;
+}
+
+.nav_line1{
+  background: rgb(108, 109, 110);
+    position: relative;
+    width: 100%;
+    height: 35px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 15px;
+    color: white;
+    font-style: bold;
+    font-size: 16px;
+}
+
+.add_icon1 {
+  position: absolute;
+  left: 720px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.add_icon1:hover {
+opacity: 0.8;
+}
+
+.table_header1{
+font-weight: bold;
+margin-top: 10px;
+}
+
+.table_hr1{
+margin-top: 5px;
+}
+
+.event {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  
+}
+
+.event:hover {
+  background-color: #04395e3d;
+}
+
+.event p {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: var(--text);
+}
+
+.action_btn {
+  opacity: 0;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.action_btn:hover {
+  opacity: 1;
+}
+
+.event:hover .action_btn{
+  opacity: 0.8;
+}
+
+.delete_icon{
+opacity: 0.8;
+}
+
+.rodal{
+display: flex;
+justify-content: space-around;
+flex-direction: column;
+}
+
+.datepicker{
+padding-left: 20%;
+padding-right: 20%;
+color: rgb(70, 70, 70)
+}
+
+.form {
+position:relative;
+height: 60px;
+}
+
+.form input {
+width: 100%;
+height: 100%; 
+color: black;
+padding-top: 20px;
+border: none;
+border-bottom: 1px solid #595f6e;
+margin-bottom: 40px;
+}
+
+.form label {
+position: absolute;
+bottom: 0px;
+left: 0%;
+width: 100%;
+height: 75%;
+pointer-events: none;
+color: #595f6e;
+}
+
+.form :focus {
+border-bottom: 2px solid #595f6e;
+}
+
+.form :focus .label{
+color: black;
+}
+
+.button {
+padding: 10px 20px;
+border-radius: 20px;
+border: 2px solid rgb(56, 56, 56);
+color: #000;
+text-transform: uppercase;
+font-weight: bold;
+font-size: 12px;
+cursor: pointer;
+margin-left: 30%;
+margin-top: 40px;
+width: 150px;
+}
+
+.button:hover {
+background: rgb(180, 180, 180);
+}
+
+.button:focus {
+outline: none;
+}
+
+.title {
+color: rgb(39, 39, 39);
+text-align: center;
+}
+
+.h5 {
+  margin-bottom: 20px;
+}
+
+.label1 {
+  font-size: 16px;
+  color: black;
+  font-weight: 600;
+  margin-right: 10px;
 }

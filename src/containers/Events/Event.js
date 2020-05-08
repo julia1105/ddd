@@ -7,7 +7,7 @@ const Event = ({event, ...props}) => {
         <div className={classes.action_btn}>
          
             <span aria-label="delete" role="img" onClick={props.deleteEvent}>
-            <img className={classes.delete_icon} src="https://icon-icons.com/icons2/950/PNG/256/cross-symbol_icon-icons.com_74149.png" alt="Add icon"  height="15px" width="15px"/>
+            <img className={classes.delete_icon} src="https://image.flaticon.com/icons/svg/447/447047.svg" alt="Add icon"  height="15px" width="15px"/>
             </span>
           
         </div>
@@ -15,10 +15,9 @@ const Event = ({event, ...props}) => {
 
 
     return (
-
         <div className = {classes.event}>
-            <Col sm={6} className="p-0"></Col>
-            <Col sm={5} ></Col>
+            <Col sm={4} className="p-0">{event.data}</Col>
+            <Col sm={7} >{event.definition}</Col>
             <Col ><ActionBtn /></Col>
         </div>
     )

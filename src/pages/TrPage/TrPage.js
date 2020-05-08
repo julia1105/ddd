@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Scheduler, { Resource } from 'devextreme-react/scheduler';
 import Query from 'devextreme/data/query';
+import axios from 'axios'
 
 import AppointmentTemplate from './AppointmentTemplate.js';
 import AppointmentTooltipTemplate from './AppointmentTooltipTemplate';
@@ -25,7 +26,8 @@ class TrPage extends Component {
     this.state = {
       scheduler: null,
       locale: 'ru',
-      records: []
+      records: [],
+      trainings: []
     };
     
     loadMessages({
@@ -42,7 +44,15 @@ class TrPage extends Component {
     this.onContentReady = this.onContentReady.bind(this);
   }
 
+  componentDidMount() {
+    axios.get('/api/listTrain').then(res => {
+        console.log(res);
+        this.setState({trainings: res.data})
+    })
+}
+
   render() {
+
     return (
       <Scheduler
         dataSource={data}
@@ -85,6 +95,7 @@ class TrPage extends Component {
   }
 
   onAppointmentFormOpening(data) {
+    const { trainings } = this.state;
     let form = data.form,
       trInfo = getTrById(data.appointmentData.trId) || {},
       startDate = data.appointmentData.startDate;
@@ -101,45 +112,34 @@ class TrPage extends Component {
         message: 'Необходимо выбрать тренировку из списка'
     }],
       editorOptions: {
-        items: data,
-        displayExpr: 'text',
+        items: trainings,
+        displayExpr: 'name',
         valueExpr: 'id',
-        onValueChanged: function(args) {
-          trInfo = getTrById(args.value);
-          form.getType('type')
-            .option('value', trInfo.type);
-        }
+        searchEnabled: true,
+        acceptCustomValue: true
       }
     },
-
-     {
-      label: {
-        text: 'Тип'
-      },
-      name: 'type',
-      editorType: 'dxTextBox',
-      editorOptions: {
-        value: trInfo.type,
-        readOnly: true
-      }
-    }, 
     
     {
       label: {
         text: 'Дата проведения'
       },
       dataField: 'startDate',
+      colSpan: 2,
       editorType: 'dxDateBox',
       editorOptions: {
         type: 'datetime',
         dateSerializationFormat: 'yyyy-MM-ddTHH:mm',
         }
-    }, {
+    }, 
+    
+    {
       label: {
         text: 'Окончание'
       },
       name: 'endDate',
       dataField: 'endDate',
+      colSpan: 2,
       editorType: 'dxDateBox',
       editorOptions: {
         type: 'datetime',

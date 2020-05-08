@@ -55,7 +55,9 @@ class AddAthlete extends Component{
     this.setState({group_id: 2});
   }
 
-  addAthlete = () => {
+  onSubmit = (event) => {
+    event.preventDefault();
+
     const {name} = this.state;
     const {surname} = this.state;
     const {sex} = this.state;
@@ -109,8 +111,14 @@ class AddAthlete extends Component{
                     onClick={this.show.bind(this)}
                 >Добавить спортсмена</button>
                 
-                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={660} className={classes.rodall} customStyles={divStyle}>
-                
+                <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={750} className={classes.rodall} customStyles={divStyle}>
+               
+               <form onSubmit={this.onSubmit}>
+                <div className={classes.title}>
+                <h3>Новый спортсмен</h3>
+                <hr></hr>
+                </div>
+
                 <div className={classes.form}>
                 <input type="text" name="name" onChange={this.inputChange} value={this.state.name} required />
                 <label for="name" className={classes.label_name}>
@@ -133,14 +141,14 @@ class AddAthlete extends Component{
                 </div>
 
                 <div className={classes.form}>
-                <input type="text" name="heigth" onChange={this.inputChange} value={this.state.heigth} required />
+                <input type="number" min="100" name="heigth" onChange={this.inputChange} value={this.state.heigth} required />
                 <label for="heigth" className={classes.label_name}>
                   <span className={classes.content_name}>Рост</span>
                 </label>
                 </div>
 
                 <div className={classes.form}>
-                <input type="text" name="weigth" onChange={this.inputChange} value={this.state.weigth} required />
+                <input type="number" min="20" name="weigth" onChange={this.inputChange} value={this.state.weigth} required />
                 <label for="weigth" className={classes.label_name}>
                   <span className={classes.content_name}>Вес</span>
                 </label>
@@ -148,7 +156,8 @@ class AddAthlete extends Component{
 
                 <div className={classes.datepicker}>
                 <label>Дата рождения: 
-                <DatePicker locale="ru" selected={this.state.age}
+                <DatePicker 
+                      locale="ru" selected={this.state.age}
                       onChange={this.handleChange}
                       dateFormat='dd/MM/yyyy'
                   />
@@ -177,10 +186,11 @@ class AddAthlete extends Component{
                 </label>
                 </div>
 
-              <button className={classes.button} onClick={this.addAthlete}>
+               <input className={classes.button} type="submit" value="Добавить" />
+              {/* <button className={classes.button} onClick={this.addAthlete}>
                   Добавить
-                </button>
-                
+                </button> */}
+                </form>
                 </Rodal>
              </div>
         )

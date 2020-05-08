@@ -24,18 +24,19 @@ class AddMeasurement extends Component{
         this.state = { 
           visible: false,
           startDate: new Date(),
-          text: '',
-          mark: ''};
+          text: 'Вес',
+          mark: '',
+          parameters: []};
           this.inputChange = this.inputChange.bind(this);
       }
     
      onClose = () => {
         this.setState({startDate: new Date()});
-        this.setState({text: ''});
+        this.setState({text: 'Вес'});
         this.setState({mark: ''});
       }
 
-      addMeasure = () => {
+      onSubmit = () => {
         const {startDate} = this.state;
         const {text} = this.state;
         const {mark} = this.state;
@@ -47,7 +48,7 @@ class AddMeasurement extends Component{
         if(text){
           this.props.addMeasure(startDate, text, mark);
           this.setState({startDate: new Date()});
-          this.setState({text: ''});
+          this.setState({text: 'Вес'});
           this.setState({mark: ''});
           this.setState({ visible: false })
       }
@@ -77,15 +78,16 @@ class AddMeasurement extends Component{
             <div>
                  <img className={classes.add_icon}  onClick={this.show.bind(this)} src="https://image.flaticon.com/icons/svg/1237/1237946.svg" alt="Add icon"  height="22px" width="22px"/>
                  
-                 <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={500} className={classes.rodall} customStyles={divStyle}>
+                 <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={450} className={classes.rodall} customStyles={divStyle}>
                 
+                <form onSubmit={this.onSubmit}>
                 <div className={classes.title}>
                 <h3>Новое измерение</h3>
                 <hr></hr>
                 </div>
                 
                 <div className={classes.datepicker}>
-                <label>Дата: 
+                <label>Дата
                 <DatePicker locale="ru" selected={this.state.startDate}
                       onChange={this.handleChange}
                       dateFormat='dd/MM/yyyy'
@@ -93,10 +95,29 @@ class AddMeasurement extends Component{
                   </label>
                   </div>
 
-                <div className={classes.form}>
-                <input type="text" name="text" onChange={this.inputChange} value={this.state.text} required />
-                <label for="text" className={classes.label_name}>
-                  <span className={classes.content_name}>Название измерения</span>
+                {/* <div className={classes.select}>
+                <label>Измерение
+                <select className={classes.select_box} name="text" value={this.state.text} onChange={this.inputChange}>
+                {parameters.map(parameter =>(
+                        <option className={classes.options_container} value = {parameter.parameter_id}>
+                            {parameter.title}
+                        </option>
+                    ))
+                    }
+                </select>
+                </label>
+                </div> */}
+
+                <div className={classes.select}>
+                <label>Измерение  
+                <select className={classes.select_box} name="text" value={this.state.text} onChange={this.inputChange}>
+                  <option className={classes.options_container} value="Вес">Вес</option>
+                  <option className={classes.options_container} value="Рост">Рост</option>
+                  <option className={classes.options_container} value="Cредний пульс">Средний пульс</option>
+                  <option className={classes.options_container} value="Вариабельность пульса">Вариабельность пульса</option>
+                  <option className={classes.options_container} value="Процент жировой массы">Процент жировой массы</option>
+                  <option className={classes.options_container} value="Процент мышечной массы">Процент мышечной массы</option>
+                </select>
                 </label>
                 </div>
 
@@ -107,9 +128,8 @@ class AddMeasurement extends Component{
                 </label>
                 </div>
 
-              <button className={classes.button} onClick={this.addMeasure}>
-                  Добавить
-                </button>
+              <input className={classes.button} type="submit" value="Добавить" />
+                </form>
                 </Rodal>
               
              </div>

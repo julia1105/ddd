@@ -35,7 +35,7 @@ class AddTest extends Component{
         this.setState({mark: ''});
       }
 
-      addTest = () => {
+      onSubmit = () => {
         const {startDate} = this.state;
         const {text} = this.state;
         const {mark} = this.state;
@@ -79,15 +79,16 @@ class AddTest extends Component{
           <div>
           <img className={classes.add_icon}  onClick={this.show.bind(this)} src="https://image.flaticon.com/icons/svg/1237/1237946.svg" alt="Add icon"  height="22px" width="22px"/>
           
-          <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={500} className={classes.rodall} customStyles={divStyle}>
-         
+          <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={450} className={classes.rodall} customStyles={divStyle}>
+          
+          <form onSubmit={this.onSubmit}>
           <div className={classes.title}>
                 <h3>Новый норматив</h3>
                 <hr></hr>
           </div>
          
          <div className={classes.datepicker}>
-         <label>Дата: 
+         <label>Дата
          <DatePicker locale="ru" selected={this.state.startDate}
                       onChange={this.handleChange}
                       dateFormat='dd/MM/yyyy'
@@ -109,9 +110,8 @@ class AddTest extends Component{
                 </label>
         </div>
 
-       <button className={classes.button} onClick={this.addTest}>
-           Добавить
-         </button>
+        <input className={classes.button} type="submit" value="Добавить" />
+         </form>
          </Rodal>
       </div>
         )

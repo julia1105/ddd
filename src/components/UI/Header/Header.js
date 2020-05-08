@@ -26,7 +26,7 @@ export const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                 <Link to ="/main" className="nav-link">Главная</Link>
-                <Link to ="/training_create" className="nav-link">Создание тренировки</Link>
+                <Link to ="/training_create" className="nav-link">База тренировок</Link>
                 <Link to ="/exercises" className="nav-link">База упражнений</Link>
                 </Nav>
             </Navbar.Collapse>

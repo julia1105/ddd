@@ -12,7 +12,8 @@ export default class AthletesList extends Component {
         super()
 
         this.state = {
-            athletes: []
+            athletes: [],
+            groups: []
         }
     }
 
@@ -21,12 +22,18 @@ export default class AthletesList extends Component {
             console.log(res);
             this.setState({athletes: res.data})
         })
+
+        axios.get('/api/groupList').then(res => {
+            console.log(res);
+            this.setState({groups: res.data})
+        })
     }
 
     addAthlete = (name, surname, sex,  age, weigth, heigth, email, group_id) => {
 
         const v = age;
         const ages = new Date(v).toLocaleDateString()
+        const { groups } = this.state;
 
         this.setState(state => {
             let {athletes} = state;
@@ -41,6 +48,8 @@ export default class AthletesList extends Component {
                 heigth: heigth,
                 group_id: group_id
               };
+
+              alert (athlete.group_id)
 
               
               axios.post('/api/newParticipant', { name: name,
@@ -58,6 +67,8 @@ export default class AthletesList extends Component {
                     console.log(error.response);
                   });
 
+             const group = groups.filter(g => g.group_id === group_id)[0]
+
             athletes.push({
                 id: athletes.length !== 0 ? athletes.length : 0,
                 name: name,
@@ -67,7 +78,8 @@ export default class AthletesList extends Component {
                 age: ages,
                 weigth: weigth,
                 heigth: heigth,
-                group_id: group_id
+                group_id: group_id,
+                group: group
             });
 
             axios.get('/api/listPartWithGroup').then(res => {

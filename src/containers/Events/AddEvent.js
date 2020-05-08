@@ -33,7 +33,7 @@ class AddEvent extends Component{
         this.setState({deinition: ''});
       }
 
-      addEvent = () => {
+      onSubmit = () => {
         const {data} = this.state;
         const {deinition} = this.state;
 
@@ -72,17 +72,18 @@ class AddEvent extends Component{
 
         return(
             <div>
-                 <img className={classes.add_icon}  onClick={this.show.bind(this)} src="https://icon-icons.com/icons2/950/PNG/256/add_icon-icons.com_74155.png" alt="Add icon"  height="22px" width="22px"/>
+                  <img className={classes.add_icon}  onClick={this.show.bind(this)} src="https://image.flaticon.com/icons/svg/1237/1237946.svg" alt="Add icon"  height="22px" width="22px"/>
                  
                  <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={400} className={classes.rodall} customStyles={divStyle}>
                 
+                 <form onSubmit={this.onSubmit}>
                 <div className={classes.title}>
                 <h3>Новое событие</h3>
                 <hr></hr>
                 </div>
                 
                 <div className={classes.datepicker}>
-                <label>Дата: 
+                <label>Дата 
                   <DatePicker locale="ru" selected={this.state.data}
                       onChange={this.handleChange}
                       dateFormat='dd/MM/yyyy'
@@ -97,9 +98,8 @@ class AddEvent extends Component{
                 </label>
                 </div>
 
-              <button className={classes.button} onClick={this.addEvent}>
-                  Добавить
-                </button>
+              <input className={classes.button} type="submit" value="Добавить" />
+                </form>
                 </Rodal>
              </div>
         )

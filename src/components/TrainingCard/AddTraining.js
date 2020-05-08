@@ -33,39 +33,37 @@ class AddTraining extends Component{
         super(props);
         this.state = { 
           visible: false,
-          title: '',
-          goal: 1,
-          complexity: 1,
-          duration: '',
-          text: ''};
+          name: '',
+          type: 1,
+          level: 1,
+          duration: null,
+          definition: ''};
           this.inputChange = this.inputChange.bind(this);
       }
     
      onClose = () => {
-        this.setState({title: ''});
-        this.setState({goal: 1});
-        this.setState({complexity: 1});
-        this.setState({duration: ''});
-        this.setState({text: ''});
+        this.setState({name: ''});
+        this.setState({type: 1});
+        this.setState({level: 1});
+        this.setState({duration: null});
+        this.setState({definition: ''});
       }
 
-      addTraining = () => {
-        const {title} = this.state;
-        const {goal} = this.state;
-        const {complexity} = this.state;
-        const {duration} = this.state;
-        const {text} = this.state;
+      onSubmit = (event) => {
+        event.preventDefault();
 
-        if (!title & !text) {
-          alert('Заполните все поля!');
-          return;
-        }
-            this.props.addTraining(title, goal, complexity, duration, text);
-            this.setState({title: ''});
-            this.setState({goal: 1});
-            this.setState({complexity: 1});
-            this.setState({duration: ''});
-            this.setState({text: ''});
+        const {name} = this.state;
+        const {type} = this.state;
+        const {level} = this.state;
+        const {duration} = this.state;
+        const {definition} = this.state;
+    
+            this.props.addTraining(name, type, level, duration, definition);
+            this.setState({name: ''});
+            this.setState({type: 1});
+            this.setState({level: 1});
+            this.setState({duration: null});
+            this.setState({definition: ''});
             this.setState({ visible: false })
       
       };
@@ -94,21 +92,22 @@ class AddTraining extends Component{
 
                         <Rodal className={classes.rodal} visible={this.state.visible} onClose={this.hide.bind(this)} width={500} height={550} className={classes.rodall} customStyles={divStyle}>
                             
+                        <form onSubmit={this.onSubmit}>
                         <div className={classes.title}>
                             <h3>Новая тренировка</h3>
                             <hr></hr>
                             </div>
 
                             <div className={classes.form}>
-                            <input type="text" name="title" onChange={this.inputChange} value={this.state.title} required />
-                            <label for="title" className={classes.label_name}>
+                            <input type="text" name="name" onChange={this.inputChange} value={this.state.name} required />
+                            <label for="name" className={classes.label_name}>
                              <span className={classes.content_name}>Название тренировки</span>
                              </label>
                             </div>
 
                             <div className={classes.select}>
                             <label>Тип тренировки
-                                  <select className={classes.select_box} name="goal" value={this.state.goal} onChange={this.inputChange}>
+                                  <select className={classes.select_box} name="type" value={this.state.type} onChange={this.inputChange}>
                                   {Type.map(item => (
                                     <option key={item.key} value={item.key}>{item.value}</option>
                                   ))}
@@ -119,7 +118,7 @@ class AddTraining extends Component{
 
                             <div className={classes.select}>
                             <label>Уровень тренировочной нагрузки 
-                                  <select className={classes.select_box} name="complexity" value={this.state.complexity} onChange={this.inputChange}>
+                                  <select className={classes.select_box} name="level" value={this.state.level} onChange={this.inputChange}>
                                   {Level.map(item => (
                                     <option key={item.key} value={item.key}>{item.value}</option>
                                   ))}
@@ -127,24 +126,23 @@ class AddTraining extends Component{
                             </label>
                             </div>
 
-                            <div className={classes.form}>
-                            <input type="text" name="duration" onChange={this.inputChange} value={this.state.duration} required />
+                           <div className={classes.form}>
+                            <input  type="number" min="5" name="duration" onChange={this.inputChange} value={this.state.duration} required />
                             <label for="duration" className={classes.label_name}>
                              <span className={classes.content_name}>Длительность (в минутах)</span>
                              </label>
-                            </div>
+                            </div> 
 
-                            <div className={classes.form}>
-                            <input type="text" name="text" onChange={this.inputChange} value={this.state.text} required />
-                            <label for="text" className={classes.label_name}>
+                            <label >
                              <span className={classes.content_name}>Описание</span>
                              </label>
+                            <div className={classes.form}>
+                          
+                            <textarea className={classes.text_area} type="text" name="definition" onChange={this.inputChange} value={this.state.definition} cols="55" rows="3" required />
                              </div>
 
-                        <button className={classes.button} onClick={this.addTraining}>
-                            Добавить
-                            </button>
-                            
+                             <input className={classes.button} type="submit" value="Добавить" />
+                            </form>
                         </Rodal>                    
                     </Col>
               

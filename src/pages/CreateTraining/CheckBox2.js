@@ -7,16 +7,24 @@ const {Panel} = Collapse
 const complexity = [
     {
         "_id": 1,
-        "name": "Легкая"
+        "name": "Небольшой"
     },
     {
         "_id": 2,
-        "name": "Средняя"
+        "name": "Средний"
     },
     {
         "_id": 3,
-        "name": "Сложная"
-    } 
+        "name": "Существенный"
+    },
+    {
+        "_id": 4,
+        "name": "Большой"
+    },
+    {
+        "_id": 5,
+        "name": "Предельный"
+    }
 ]
 
 
@@ -57,7 +65,7 @@ const handleToggle = (value) => {
         <div>
            
                <Collapse defaultActiveKey={['1']}>
-               <Panel header="Сложность" key="1">
+               <Panel header="Уровень тренировочной нагрузки" key="1">
                 {renderCheckboxLists()}
                 </Panel>
                 </Collapse>
