@@ -6,12 +6,20 @@ import TrPage from './pages/TrPage/TrPage'
 import Analythics from './pages/Analythics/Analythics'
 import ExerciseBase from './pages/ExerciseBase/ExerciseBase'
 import SportsmanPage from './pages/SportsmanPage/SportsmanPage'
-import {Auth} from './pages/Auth/Auth.js'
+import Auth from './pages/Auth/Auth.js'
+import {LoginForm,  RegisterForm} from './modules/index'
+
 
 export const useRoutes = isAthenticated => {
     if (isAthenticated) {
         return (
             <Switch>
+                 <Route path="/login" exact>
+                    <LoginForm />
+                </Route>
+                <Route path="/register" exact>
+                    <RegisterForm />
+                </Route>
                 <Route path="/main" exact>
                     <MainPage />
                 </Route>

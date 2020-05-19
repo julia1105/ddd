@@ -4,6 +4,7 @@ import { useAuth } from './hooks/auth.hook'
 import {AuthContext} from './context/AuthContext'
 import {Header} from './components/UI/Header/Header'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Auth from './pages/Auth/Auth'
 
 function App() {
   const {token, login, logout, userId} = useAuth()
@@ -11,14 +12,18 @@ function App() {
   const routes = useRoutes(true)
   
   return (
-      <AuthContext.Provider value={{
-        token, login, logout, userId, isAuthenticated
-      }}>
-      { isAuthenticated && <Header />}
+      <div>
+        {routes}
+      </div>
+
+      // <AuthContext.Provider value={{
+      //   token, login, logout, userId, isAuthenticated
+      // }}>
+      // { isAuthenticated && <Header />}
     
-        <Header />
-         {routes}
-      </AuthContext.Provider>
+      //   <Header />
+      //    {routes}
+      // </AuthContext.Provider>
       
     )
   

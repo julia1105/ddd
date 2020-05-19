@@ -15,6 +15,8 @@
     "devextreme": "19.2.7",
     "devextreme-intl": "^19.1.8",
     "devextreme-react": "19.2.7",
+    "formik": "^2.1.4",
+    "node-sass": "^4.14.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0",
     "react-chartjs-2": "^2.9.0",
@@ -25,6 +27,7 @@
     "react-scripts": "^3.4.0",
     "react-slick": "^0.25.2",
     "rodal": "^1.8.1",
+    "sass": "^1.26.5",
     "styled-react-modal": "^2.0.1"
   },
   "scripts": {
